@@ -22,7 +22,36 @@ class Solution:
             
             
             return recursiveSolution(node1.left, node2.left) and recursiveSolution(node1.right, node2.right)
+        
+        pQueue = [p]
+        qQueue = [q]
+        
+        while pQueue and qQueue:
+            p1 = pQueue[0]
+            q1 = qQueue[0]
             
+            if p1 and not q1:
+                return False
+            if not p1 and q1:
+                return False
+            
+            if p1 and q1:
+                if p1.val != q1.val:
+                    return False
+                
+            del pQueue[0]
+            del qQueue[0]
+            
+            if p1:
+                pQueue.append(p1.left)
+                pQueue.append(p1.right)
+            if q1:
+                qQueue.append(q1.left)
+                qQueue.append(q1.right)
+                
+        
+        return not pQueue and not qQueue
         
         
-        return recursiveSolution(p, q)
+        
+        
