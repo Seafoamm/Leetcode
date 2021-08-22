@@ -14,7 +14,7 @@ class Solution {
         {
             return null;
         }
-        PriorityQueue<ListNode> pq = new PriorityQueue<ListNode>(lists.length, new ListNodeComparator());
+        PriorityQueue<ListNode> pq = new PriorityQueue<ListNode>(new ListNodeComparator());
         
         for (ListNode list : lists)
         {
