@@ -1,10 +1,13 @@
 class Solution:
-    memo = {1:1, 2:2}
+
     def climbStairs(self, n: int) -> int:
-        climbStairs = Solution.climbStairs
-        memo = Solution.memo
-        if memo.get(n, -1) == -1:
-            memo[n] = climbStairs(self, n-1) + climbStairs(self, n-2)
-            return memo[n]
-        else:
-            return memo[n]
+        if n < 3:
+            return n
+        dp = [0] * (n + 1)
+        dp[1] = 1
+        dp[2] = 2
+
+        for i in range(3, n+1):
+            dp[i] = dp[i-1] + dp[i-2]
+        
+        return dp[-1]
