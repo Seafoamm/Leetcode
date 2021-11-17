@@ -8,31 +8,55 @@ class Solution:
         # ideas:
         # bfs?
         # indegrees/outdegrees (can make adjacency list)
+        
+    
+            
+        
         if start == end:
             return True
-        
-        from collections import deque
-        
-        queue = deque()
-        
         adj = {i: [] for i in range(n)}
         
         for n1, n2 in edges:
             adj[n1].append(n2)
             adj[n2].append(n1)
-            
-        visited = {key: False for key in adj}
-        
-        queue.append(start)
-        
-        while queue:
-            curr = queue.popleft()
-            visited[curr] = True
-            if curr == end:
+        vis = {i: False for i in range(n)}
+        def dfs(currNode):
+            nonlocal vis
+            nonlocal adj
+            if currNode == end:
                 return True
-            for node in adj[curr]:
-                if not visited[node]:
-                    queue.append(node)
+            vis[currNode] = True
+            
+            for node in adj[currNode]:
+                if not vis[node] and dfs(node):
+                    return True
+            return False
+        
+#         from collections import deque
+        
+#         queue = deque()
+        
+#         adj = {i: [] for i in range(n)}
+        
+#         for n1, n2 in edges:
+#             adj[n1].append(n2)
+#             adj[n2].append(n1)
+            
+#         visited = {key: False for key in adj}
+        
+#         queue.append(start)
+        
+#         while queue:
+#             curr = queue.popleft()
+#             visited[curr] = True
+#             if curr == end:
+#                 return True
+#             for node in adj[curr]:
+#                 if not visited[node]:
+#                     queue.append(node)
         
         
-        return False
+#         return False
+        return dfs(start)
+    
+    
