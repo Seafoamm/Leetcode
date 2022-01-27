@@ -1,6 +1,6 @@
 class Solution:
     # memo = {}
-    @cache
+    @lru_cache
     def climbStairs(self, n: int) -> int:
         # memo = self.memo
         # if n in memo:
