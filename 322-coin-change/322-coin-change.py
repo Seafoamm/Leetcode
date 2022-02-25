@@ -19,7 +19,6 @@ class Solution:
         for i in range(1, len(dp)):
             for coin in coins:
                 if i - coin > 0:
-                    # print(i, coin)
                     dp[i] = min(dp[i], 1 + dp[i - coin])
-        # print(dp)
+
         return dp[amount] if dp[amount] < float('inf') else -1
